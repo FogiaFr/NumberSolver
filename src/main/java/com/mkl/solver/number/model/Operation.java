@@ -1,12 +1,12 @@
 package com.mkl.solver.number.model;
 
-public class Operation {
+public class Operation<T> {
     private int param1;
     private int param2;
-    private OperationEnum operation;
+    private T operation;
     private int result;
 
-    public Operation(int param1, int param2, OperationEnum operation, int result) {
+    public Operation(int param1, int param2, T operation, int result) {
         this.param1 = param1;
         this.param2 = param2;
         this.operation = operation;
@@ -24,7 +24,7 @@ public class Operation {
     }
 
     /** @return the operation. */
-    public OperationEnum getOperation() {
+    public T getOperation() {
         return operation;
     }
 

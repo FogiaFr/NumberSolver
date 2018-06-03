@@ -12,13 +12,13 @@ import java.util.List;
  * @author MKL.
  */
 public class Solver1 {
-    public static List<List<Operation>> solve(int result, int... params) {
-        List<List<Operation>> successes = new ArrayList<>();
+    public static List<List<Operation<OperationEnum>>> solve(int result, int... params) {
+        List<List<Operation<OperationEnum>>> successes = new ArrayList<>();
         monkeyTest(result, successes, new ArrayList<>(), params);
         return successes;
     }
 
-    private static void monkeyTest(int result, List<List<Operation>> successes, List<Operation> onGoing, int... params) {
+    private static void monkeyTest(int result, List<List<Operation<OperationEnum>>> successes, List<Operation<OperationEnum>> onGoing, int... params) {
         if (params == null || params.length == 0) {
             return;
         }
@@ -47,7 +47,7 @@ public class Solver1 {
         }
     }
 
-    private static void testOperation(int result, List<List<Operation>> successes, List<Operation> onGoing, int i, int j, OperationEnum operation, int[] params) {
+    private static void testOperation(int result, List<List<Operation<OperationEnum>>> successes, List<Operation<OperationEnum>> onGoing, int i, int j, OperationEnum operation, int[] params) {
         int newParam = -1;
         switch (operation) {
             case PLUS:
@@ -74,8 +74,8 @@ public class Solver1 {
             return;
         }
         int[] newParams = extractParams(params, i, j, newParam);
-        List<Operation> newOngoing = new ArrayList<>(onGoing);
-        newOngoing.add(new Operation(params[i], params[j], operation, newParam));
+        List<Operation<OperationEnum>> newOngoing = new ArrayList<>(onGoing);
+        newOngoing.add(new Operation<>(params[i], params[j], operation, newParam));
         monkeyTest(result, successes, newOngoing, newParams);
     }
 
